@@ -1,13 +1,16 @@
-import { LayoutProps } from "~/models";
-import { Footer } from "../common/footer";
-import { Header } from "../common/header";
+import { LayoutProps } from '~/models';
+// import { Footer } from "../common/footer";
+import { Header } from '../common/header';
+import { Layout } from 'antd';
+const { Content } = Layout;
 
 export function MainLayout({ children }: LayoutProps) {
-  return (
-    <div className="min-h-screen">
-      <Header />
-      <div className="flex-grow">{children}</div>
-      <Footer />
-    </div>
-  );
+    return (
+        <Layout>
+            <Header />
+            <Content>
+                <div className="">{children}</div>
+            </Content>
+        </Layout>
+    );
 }

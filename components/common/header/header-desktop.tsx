@@ -1,82 +1,43 @@
-import {
-  AppstoreOutlined,
-  MailOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-import { MenuProps, Menu } from "antd";
-import { useState } from "react";
+import { BellOutlined, MailOutlined } from '@ant-design/icons';
+import { Avatar, Button, Input, Layout, Menu, Tooltip } from 'antd';
+const { Header } = Layout;
+const { Search } = Input;
 
 export interface HeaderDesktopProps {}
 
-const items: MenuProps["items"] = [
-  {
-    label: "Navigation One",
-    key: "mail",
-  },
-  {
-    label: "Navigation Two",
-    key: "app",
-  },
-  {
-    label: "Navigation Three - Submenu",
-    key: "SubMenu",
-    children: [
-      {
-        type: "group",
-        label: "Item 1",
-        children: [
-          {
-            label: "Option 1",
-            key: "setting:1",
-          },
-          {
-            label: "Option 2",
-            key: "setting:2",
-          },
-        ],
-      },
-      {
-        type: "group",
-        label: "Item 2",
-        children: [
-          {
-            label: "Option 3",
-            key: "setting:3",
-          },
-          {
-            label: "Option 4",
-            key: "setting:4",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: (
-      <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-        Navigation Four - Link
-      </a>
-    ),
-    key: "alipay",
-  },
-];
-
 export function HeaderDesktop(props: HeaderDesktopProps) {
-  const [current, setCurrent] = useState("mail");
+    return (
+        <Header className="flex w-full justify-between bg-white px-5">
+            <div>
+                <div className="logo" />
+                <Menu
+                    mode="horizontal"
+                    defaultSelectedKeys={['1']}
+                    items={new Array(5).fill(null).map((_, index) => {
+                        const key = index + 1;
+                        return {
+                            key,
+                            label: `nav ${key}`,
+                        };
+                    })}
+                />
+            </div>
 
-  const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
-    setCurrent(e.key);
-  };
+            <div className="flex items-center">
+                <Search className="w-[165px]" placeholder="input search text" />
 
-  return (
-    <div className="md:hidden lg:block">
-      <Menu
-        onClick={onClick}
-        selectedKeys={[current]}
-        mode="horizontal"
-        items={items}
-      />
-    </div>
-  );
+                <Tooltip title="Ant User">
+                    <Button shape="circle" className="ml-2">
+                        <MailOutlined />
+                    </Button>
+                </Tooltip>
+
+                <Button shape="circle" className="ml-2">
+                    <BellOutlined />
+                </Button>
+
+                <Avatar className="ml-2"></Avatar>
+            </div>
+        </Header>
+    );
 }

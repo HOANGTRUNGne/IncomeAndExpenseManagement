@@ -4,11 +4,7 @@ import { MainLayout } from "~/components/layout";
 export interface AboutProps {}
 
 export default function About(props: AboutProps) {
-  return (
-    <div>
-      <Button type="primary">Button</Button>
-    </div>
-  );
+  return <div>Content</div>;
 }
 
 About.Layout = MainLayout;
