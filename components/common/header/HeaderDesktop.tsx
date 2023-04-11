@@ -1,6 +1,8 @@
 import { CloudOutlined, CustomerServiceOutlined } from '@ant-design/icons';
 import { Input, Layout, Menu, MenuProps } from 'antd';
 import { Message, MyProfile, Notification } from './components';
+import Image from 'next/image';
+import { IMAGES } from '~/public/images';
 const { Header } = Layout;
 const { Search } = Input;
 
@@ -41,8 +43,10 @@ export function HeaderDesktop(props: HeaderDesktopProps) {
     return (
         <Header className=" bg-white ">
             <div className="m-auto flex max-w-[1720px] justify-between">
-                <div>
-                    <div className="logo" />
+                <div className="flex">
+                    <div>
+                        <Image src={IMAGES.logoWithName} alt="logo" width={84} height={36} />
+                    </div>
                     <Menu
                         mode="horizontal"
                         selectedKeys={['application', 'crypto']}

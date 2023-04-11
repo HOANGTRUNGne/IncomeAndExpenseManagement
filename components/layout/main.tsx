@@ -1,16 +1,13 @@
 import { LayoutProps } from '~/models';
-// import { Footer } from "../common/footer";
-import { Header } from '../common/header';
 import { Layout } from 'antd';
+import { Header } from '../common/Header';
 const { Content } = Layout;
 
 export function MainLayout({ children }: LayoutProps) {
     return (
         <Layout className="h-screen">
             <Header />
-            <Content>
-                <div className="">{children}</div>
-            </Content>
+            <Content>{children}</Content>
         </Layout>
     );
 }
