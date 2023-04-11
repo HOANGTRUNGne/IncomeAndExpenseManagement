@@ -6,7 +6,7 @@ const { Content } = Layout;
 
 export function MainLayout({ children }: LayoutProps) {
     return (
-        <Layout>
+        <Layout className="h-screen">
             <Header />
             <Content>
                 <div className="">{children}</div>

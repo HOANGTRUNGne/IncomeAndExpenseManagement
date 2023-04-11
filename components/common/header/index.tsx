@@ -1,4 +1,4 @@
-import { HeaderDesktop } from './header-desktop';
+import { HeaderDesktop } from './HeaderDesktop';
 
 export function Header() {
     return (
