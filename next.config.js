@@ -1,9 +1,12 @@
 /** @type {import('next').NextConfig} */
+const withLess = require('next-with-less');
+
 const nextConfig = {
-  reactStrictMode: true,
-  images: {
-    domains: ["ant-cra.cremawork.com", "cremawork.com"],
-  },
+    reactStrictMode: true,
+    lessLoaderOptions: {},
+    images: {
+        domains: ['ant-cra.cremawork.com', 'cremawork.com'],
+    },
 };
 
-module.exports = nextConfig;
+module.exports = withLess(nextConfig);
