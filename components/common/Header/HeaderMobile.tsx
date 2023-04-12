@@ -1,22 +1,33 @@
-import Image from 'next/image';
-import { IMAGES } from '~/public/images';
-import { Message, MyProfile, Notification } from './components';
-import { Button, Input, Layout } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
+import { Button, Input, Layout, MenuProps } from 'antd';
+import Image from 'next/image';
+import { useState } from 'react';
+import { IMAGES } from '~/public/images';
+import { DrawerMobile, DropdownMobile, Message, MyProfile, Notification } from './components';
 const { Header } = Layout;
 const { Search } = Input;
 
-export interface HeaderMobileProps {}
+export interface HeaderMobileProps {
+    items: MenuProps['items'];
+}
 
-export function HeaderMobile(props: HeaderMobileProps) {
+export function HeaderMobile({ items }: HeaderMobileProps) {
+    const [open, setOpen] = useState(false);
+
     return (
-        <Header className="bg-white px-5 lg:hidden">
+        <Header className="bg-white px-5 lg:hidden ">
             <div className="m-auto flex h-full items-center justify-between">
                 <div className="flex">
-                    <Button type="ghost" className="p-1">
+                    <Button type="ghost" className="p-1" onClick={() => setOpen(true)}>
                         <MenuOutlined className="text-lg" />
                     </Button>
-                    <Image src={IMAGES.logoWithName} alt="logo" width={84} height={36} className="ml-5" />
+                    <Image
+                        src={IMAGES.logoWithName}
+                        alt="logo"
+                        width={84}
+                        height={36}
+                        className="ml-5 hidden min-[380px]:block"
+                    />
                 </div>
 
                 <div className="flex items-center">
@@ -29,8 +40,11 @@ export function HeaderMobile(props: HeaderMobileProps) {
                     </div>
 
                     <MyProfile />
+                    <DropdownMobile />
                 </div>
             </div>
+
+            <DrawerMobile open={open} setOpen={setOpen} items={items} />
         </Header>
     );
 }
