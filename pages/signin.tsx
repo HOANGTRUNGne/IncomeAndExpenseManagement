@@ -1,14 +1,20 @@
 import { Card } from 'antd';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { LoginForm } from '~/components/auth';
 import { EmptyLayout } from '~/components/layout';
+import { APP_ROUTES } from '~/constant';
 import { LoginPayload } from '~/models';
 import { IMAGES } from '~/public/images';
+
 export interface SigninProps {}
 
 export default function Signin(props: SigninProps) {
+    const router = useRouter();
+
     async function handleLoginSubmit(payload: LoginPayload) {
         console.log('🏆 ~ handleLoginSubmit ~ payload:', payload);
+        router.replace(APP_ROUTES.HOME);
     }
 
     return (
