@@ -41,7 +41,7 @@ export interface HeaderDesktopProps {}
 
 export function HeaderDesktop(props: HeaderDesktopProps) {
     return (
-        <Header className=" bg-white ">
+        <Header className="hidden bg-white lg:block">
             <div className="m-auto flex max-w-[1720px] justify-between">
                 <div className="flex">
                     <div>
