@@ -1,5 +1,6 @@
 const IMAGES = {
-    logoWithName: require(`./logo-with-name.png`),
+    logoDesk: require(`./logo_desk.png`),
+    logoTemp: require(`./logo-with-name.png`),
 };
 
 export { IMAGES };

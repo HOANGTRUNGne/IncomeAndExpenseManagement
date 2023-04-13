@@ -1,4 +1,3 @@
-import 'antd/dist/reset.css';
 import { EmptyLayout } from '~/components/layout/EmptyLayout';
 import { AppPropsWithLayout } from '~/models';
 import '~/styles/globals.css';

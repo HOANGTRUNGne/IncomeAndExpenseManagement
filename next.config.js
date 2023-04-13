@@ -5,6 +5,9 @@ const nextConfig = {
     images: {
         domains: ['ant-cra.cremawork.com', 'cremawork.com'],
     },
+    experimental: {
+        optimizeCss: true,
+    },
 };
 
 module.exports = nextConfig;

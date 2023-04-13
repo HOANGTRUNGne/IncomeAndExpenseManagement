@@ -22,7 +22,7 @@ export function HeaderMobile({ items }: HeaderMobileProps) {
                         <MenuOutlined className="text-lg" />
                     </Button>
                     <Image
-                        src={IMAGES.logoWithName}
+                        src={IMAGES.logoTemp}
                         alt="logo"
                         width={84}
                         height={36}

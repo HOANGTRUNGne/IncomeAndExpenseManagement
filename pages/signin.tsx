@@ -28,7 +28,7 @@ export default function Signin(props: SigninProps) {
                 <div className="flex flex-1">
                     <div className="w-full p-5 sm:w-1/2 md:w-2/5">
                         <div className="mb-9 text-center">
-                            <Image src={IMAGES.logoWithName} alt="logo" height={36} className="object-cover" />
+                            <Image src={IMAGES.logoTemp} alt="logo" height={36} className="object-cover" />
                         </div>
                         <LoginForm onSubmit={handleLoginSubmit} />
                     </div>

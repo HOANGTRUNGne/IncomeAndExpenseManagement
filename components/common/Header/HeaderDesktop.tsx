@@ -15,13 +15,14 @@ export function HeaderDesktop({ items }: HeaderDesktopProps) {
             <div className="m-auto flex max-w-[1720px] justify-between">
                 <div className="flex">
                     <div>
-                        <Image src={IMAGES.logoWithName} alt="logo" width={84} height={36} />
+                        <Image src={IMAGES.logoTemp} alt="logo" height={36} className="object-cover" />
                     </div>
                     <Menu
                         mode="horizontal"
                         selectedKeys={['application', 'crypto']}
                         items={items}
                         disabledOverflow={true}
+                        className="bg-transparent"
                     />
                 </div>
 
