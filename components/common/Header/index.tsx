@@ -2,28 +2,18 @@ import { MenuProps } from 'antd';
 import { HeaderDesktop } from './HeaderDesktop';
 import { HeaderMobile } from './HeaderMobile';
 import { CloudOutlined, CustomerServiceOutlined } from '@ant-design/icons';
+import Link from "next/link";
 
 export function Header() {
     const items: MenuProps['items'] = [
         {
-            key: 'application',
-            label: 'Application',
-            children: [
-                {
-                    icon: <CloudOutlined />,
-                    key: 'crypto',
-                    label: 'Crypto',
-                },
-                {
-                    icon: <CustomerServiceOutlined />,
-                    key: 'crm',
-                    label: 'CRM',
-                },
-            ],
+            key: 'Home',
+            label: (<Link href={'/'}>Home</Link>),
+
         },
         {
-            key: 'apps',
-            label: 'Apps',
+            key: 'category',
+            label: (<Link href={'/category'}>Category</Link>)
         },
         {
             key: 'libs',

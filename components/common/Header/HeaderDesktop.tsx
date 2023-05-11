@@ -2,6 +2,7 @@ import { Input, Layout, Menu, MenuProps } from 'antd';
 import Image from 'next/image';
 import { IMAGES } from '~/public/images';
 import { Message, MyProfile, Notification } from './components';
+import Link from "next/link";
 const { Header } = Layout;
 const { Search } = Input;
 
@@ -14,9 +15,9 @@ export function HeaderDesktop({ items }: HeaderDesktopProps) {
         <Header className="hidden bg-white lg:block">
             <div className="m-auto flex max-w-[1720px] justify-between">
                 <div className="flex">
-                    <div>
+                    <Link href={'/'}>
                         <Image src={IMAGES.logoTemp} alt="logo" height={36} className="object-cover" />
-                    </div>
+                    </Link>
                     <Menu
                         mode="horizontal"
                         selectedKeys={['application', 'crypto']}

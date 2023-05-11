@@ -1,17 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import ZoneBar from './ZoneBar';
 import ZonePage from './ZonePage';
-import {create, fetchData, removeRowById, updateRowById} from '../../parse_server/index';
+import {create, createParseObject, fetchData, removeRowById, updateRowById} from '../../parse_server/index';
 import {Layout} from "antd";
 
 const {Header} = Layout;
 
 const Income = (props) => {
-    const {fetchIncomeExpenditureData:fetchIncomesData, incomeExpenditureData} = props
+    const {fetchIncomeExpenditureData:fetchIncomesData, incomeExpenditureData, ...rest} = props
     const [editing, setEditing] = useState({selectRecord: {}, isOpen: false});
-
     const createIncome = async (values) => {
-        await create('RevenueExpenditure', values);
+
+        await create('RevenueExpenditure', {
+            ...values,
+            // category: createParseObject("Categories", values.category).toPointer()
+        });
+
         fetchIncomesData();
     };
 
@@ -36,12 +40,13 @@ const Income = (props) => {
                     onUpdate: updateIncome,
                     onCreate: createIncome,
                     setEditing, editing,
+                    ...rest
                 }}/>
             <ZonePage
                 {...{
                     data: incomeExpenditureData, setEditing,
                     handleClickDelete: handleDelete, typeCategory:'Incomes',
-                    classCard: 'border-s-emerald-500',
+                    classCard: 'border-s-emerald-500'
                 }}
             />
         </Layout>

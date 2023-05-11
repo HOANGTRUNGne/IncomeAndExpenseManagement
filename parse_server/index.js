@@ -19,6 +19,7 @@ export const create = async (collection, {...restPayload}) => {
 
 export const fetchData = async (collection) => {
     const query = new Parse.Query(collection);
+    // query.include(["CATE"]) case k fetch dc quan he
     return await query.find();
 }
 
@@ -29,9 +30,24 @@ export const removeRowById = async (collection, id) => {
 }
 
 export const updateRowById = async (collection, id, {...restPayload}) => {
-    const MyObject = Parse.Object.extend(collection);
-    const myObject = new MyObject();
-    myObject.id = id;
-    myObject.set({...restPayload});
-    return await myObject.save();
+    const MyEntity = Parse.Object.extend(collection);
+    const entity = new MyEntity();
+    entity.id = id;
+    entity.set({...restPayload});
+    return await entity.save();
+}
+
+export const saveFile = async (file, fileName) => {
+    const parseFile = new Parse.File(fileName || file.name, file)
+    return await parseFile.save()
+}
+
+export const createParseObject = ( collection,id, data) => {
+    const parseObject = Parse.Object.extend(collection).createWithoutData(id)
+    parseObject.set(data)
+    return parseObject
+}
+
+export const creatParseFile = (file, fileName) => {
+    return new Parse.File(fileName || file.name, file)
 }

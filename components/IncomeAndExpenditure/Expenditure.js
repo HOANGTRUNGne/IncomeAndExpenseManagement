@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import ZoneBar from "./ZoneBar";
 import ZonePage from "./ZonePage";
-import {create, fetchData, removeRowById, updateRowById} from "../../parse_server";
+import {create, removeRowById, updateRowById} from "../../parse_server";
 
 const Expenditure = (props) => {
-    const {fetchIncomeExpenditureData: fetchSpendingsData, incomeExpenditureData} = props
+    const {fetchIncomeExpenditureData: fetchSpendingsData, incomeExpenditureData,...rest} = props
     const [editing, setEditing] = useState({selectRecord: {}, isOpen: false});
 
 
@@ -31,7 +31,7 @@ const Expenditure = (props) => {
                     titleUpdate: 'Update Spendings',
                     onUpdate: updateSpendings,
                     onCreate: createSpendings,
-                    setEditing, editing,
+                    setEditing, editing, ...rest
                 }}
             />
             <ZonePage {...{
