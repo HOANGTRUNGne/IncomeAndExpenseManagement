@@ -19,7 +19,6 @@ export const create = async (collection, {...restPayload}) => {
 
 export const fetchData = async (collection) => {
     const query = new Parse.Query(collection);
-    // query.include(["CATE"]) case k fetch dc quan he
     return await query.find();
 }
 
@@ -50,4 +49,11 @@ export const createParseObject = ( collection,id, data) => {
 
 export const creatParseFile = (file, fileName) => {
     return new Parse.File(fileName || file.name, file)
+}
+
+export const fetchWithPagination = async (collection, {pageSize, currentPage, customQuery} = {}) => {
+    const query = new Parse.Query(collection);
+    query.skip((currentPage-1)*pageSize).limit(pageSize).descending("createdAt").withCount()
+    customQuery && customQuery(query)
+    return await query.find();
 }

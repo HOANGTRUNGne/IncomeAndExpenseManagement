@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Button, Layout} from 'antd';
 import PlusIcon from "~/public/images/PlusIcon";
 import ModalForm from "./ModalForm";
 
-const {Header} = Layout;
 
 
 const ZoneBar = (props) => {
@@ -16,7 +15,8 @@ const ZoneBar = (props) => {
                 <div className={'flex items-center justify-between'}>
                     <p className={'text-3xl font-extralight text-slate-500'}>{title}</p>
                     <Button type="link" onClick={() => setEditing({isOpen: true})}>
-                        <PlusIcon style={{color: '#2bc48a', fontSize: '20px', margin:0}}/></Button>
+                        <PlusIcon style={{color: '#2bc48a', fontSize: '20px', margin:0}}/>
+                    </Button>
                 </div>
             </div>
 

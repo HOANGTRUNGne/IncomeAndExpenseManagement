@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-import {Button, Form, Input, message, Modal, Space, Upload} from "antd";
-import {PlusOutlined, LoadingOutlined} from "@ant-design/icons";
-import Parse from "parse";
-import {creatParseFile, saveFile} from "../../parse_server";
-import {loadGetInitialProps} from "next/dist/shared/lib/utils";
+import {Button, Form, Input, Modal, Space, Upload} from "antd";
+import {LoadingOutlined, PlusOutlined} from "@ant-design/icons";
+import {creatParseFile} from "../../parse_server";
 
 const {TextArea} = Input;
 const tailLayout = {
@@ -15,7 +13,6 @@ const UploadIcon = ({value = {}, onChange, iconEdit}) => {
     const [icon, setIcon] = useState(value?.url);
 
     const propsIcon = {
-
         name: 'file',
         beforeUpload: () => false,
         async onChange(info) {
@@ -24,7 +21,6 @@ const UploadIcon = ({value = {}, onChange, iconEdit}) => {
             onChange(creatParseFile(info.file));
         },
     };
-    console.log(icon)
     const uploadButton = (
         <div>{loadingIcon ? <LoadingOutlined/> : <PlusOutlined/>}
             <div style={{marginTop: 8,}}>Upload</div>
