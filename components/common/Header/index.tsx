@@ -16,8 +16,8 @@ export function Header() {
             label: (<Link href={'/category'}>Category</Link>)
         },
         {
-            key: 'libs',
-            label: 'Libs',
+            key: 'transactions',
+            label: (<Link href={'/transactions'}>Transactions</Link>),
         },
         {
             key: 'components',

@@ -1,5 +1,4 @@
 import Parse from 'parse';
-
 Parse.initialize('myAppId');
 Parse.serverURL = 'http://localhost:1337/parse'
 
@@ -56,4 +55,11 @@ export const fetchWithPagination = async (collection, {pageSize, currentPage, cu
     query.skip((currentPage-1)*pageSize).limit(pageSize).descending("createdAt").withCount()
     customQuery && customQuery(query)
     return await query.find();
+}
+
+export const getRoleCurrentUser = async (user) =>{
+    const query = new Parse.Query(Parse.Role);
+    query.equalTo('users', user);
+    const roles = await query.find();
+    return   roles.map(e => e.getName())
 }

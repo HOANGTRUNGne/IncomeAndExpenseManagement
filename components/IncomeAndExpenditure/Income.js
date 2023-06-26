@@ -1,34 +1,50 @@
-import React, {useRef, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import ZoneBar from './ZoneBar';
 import ZonePage from './ZonePage';
 import {create, removeRowById, updateRowById} from '../../parse_server/index';
-import {Layout} from "antd";
+import {Button, Layout} from "antd";
+import PlusIcon from "~/public/images/PlusIcon";
+import ModalForm from "~/components/IncomeAndExpenditure/IncomeExpenseForm";
+import {FilterContext} from "~/components/FilterSearch/FilterContext";
+
+const RenderActions = ({handleModalForm}) => {
+    return (
+        <Button type="link" onClick={() => handleModalForm()}>
+            <PlusIcon style={{color: '#2bc48a', fontSize: '20px', margin: 0}}/>
+        </Button>
+    )
+}
 
 const Income = (props) => {
-    const {incomeExpenditureData, ...rest} = props
+    const {incomeExpenditureData, fetchIncomeExpenditureData, ...rest} = props
     const [editing, setEditing] = useState({selectRecord: {}, isOpen: false});
 
-
-    const actionRef = useRef()
+    const contextFilter = useContext(FilterContext)
+    const {actionRefIncomes, handleDataIncomes, dataIncomes} = contextFilter
     const createIncome = async (values) => {
-
         await create('RevenueExpenditure', {
             ...values,
         });
-        actionRef.current.reload();
+        fetchIncomeExpenditureData()
+        actionRefIncomes.current.reload();
     };
-
     const updateIncome = async (values, id) => {
         await updateRowById('RevenueExpenditure', id, values);
-        actionRef.current.reload();
+        actionRefIncomes.current.reload();
+        fetchIncomeExpenditureData()
 
     };
-
-    const handleDelete = async (id) => {
+    const deleteIncome = async (id) => {
         await removeRowById('RevenueExpenditure', id);
-        actionRef.current.reload();
-
+        fetchIncomeExpenditureData()
+        actionRefIncomes.current.reload();
     };
+    const handleModalForm = () => {
+        setEditing({isOpen: !(editing.isOpen)})
+    }
+    const handleEdit = (record) => {
+        setEditing({selectRecord: record, isOpen: true})
+    }
 
     return (
         <Layout>
@@ -36,17 +52,20 @@ const Income = (props) => {
             <ZoneBar
                 {...{
                     title: 'Incomes',
-                    titleAdd: 'Add Incomes',
-                    titleUpdate: 'Update Incomes',
-                    onUpdate: updateIncome,
-                    onCreate: createIncome,
-                    setEditing, editing, ...rest
-                }}/>
+                    action: <RenderActions {...{handleModalForm}}/>,
+                    modalForm: <ModalForm {...{
+                        type: 'Incomes',
+                        onUpdate: updateIncome,
+                        onCreate: createIncome,
+                        editing, handleModalForm, ...rest
+                    }}/>,
+
+                }} />
             <ZonePage
                 {...{
-                    setEditing,
-                    handleClickDelete: handleDelete, typeCategory: 'Incomes',
-                    classCard: 'border-s-emerald-500 border-2', actionRef,
+                    handleClickEdit: handleEdit, handleDataFilter: handleDataIncomes,
+                    handleClickDelete: deleteIncome, typeCategory: 'Incomes',
+                    classCard: 'border-s-emerald-500 border-2', actionRef: actionRefIncomes,
                 }}
             />
 

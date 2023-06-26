@@ -1,5 +1,5 @@
 import React from 'react';
-import {Space, Table} from 'antd';
+import {Space, Table, Tag} from 'antd';
 
 const TableCategories = (props) => {
     const {categoriesData = [], setEditingCategories, handleDelete: handleClickDelete} = props
